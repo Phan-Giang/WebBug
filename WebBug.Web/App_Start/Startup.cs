@@ -26,9 +26,10 @@ namespace WebBug.Web.App_Start
         private void ConfigAutofac(IAppBuilder app)
         {
             var builder = new ContainerBuilder();
+            // Register  MVC controllers.
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
-            // Register your Web API controllers.
-            builder.RegisterApiControllers(Assembly.GetExecutingAssembly()); //Register WebApi Controllers
+            // Register  Web API controllers.
+            builder.RegisterApiControllers(Assembly.GetExecutingAssembly()); 
 
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest();
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();
@@ -48,7 +49,8 @@ namespace WebBug.Web.App_Start
             Autofac.IContainer container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
-            GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver((IContainer)container); //Set the WebApi DependencyResolver
+            //Set the WebApi DependencyResolver
+            GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver((IContainer)container); 
         }
     }
 }

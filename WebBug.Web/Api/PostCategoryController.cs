@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using WebBug.Model.Models;
@@ -13,7 +10,7 @@ namespace WebBug.Web.Api
     [RoutePrefix("api/postcategory")]
     public class PostCategoryController : ApiControllerBase
     {
-        IPostCategoryService _postCategoryService;
+        private IPostCategoryService _postCategoryService;
 
         public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryService) :
             base(errorService)
@@ -29,7 +26,6 @@ namespace WebBug.Web.Api
                 var listCategory = _postCategoryService.GetAll();
 
                 HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listCategory);
-
 
                 return response;
             });
@@ -50,7 +46,6 @@ namespace WebBug.Web.Api
                     _postCategoryService.Save();
 
                     response = request.CreateResponse(HttpStatusCode.Created, category);
-
                 }
                 return response;
             });
@@ -71,7 +66,6 @@ namespace WebBug.Web.Api
                     _postCategoryService.Save();
 
                     response = request.CreateResponse(HttpStatusCode.OK);
-
                 }
                 return response;
             });
@@ -92,7 +86,6 @@ namespace WebBug.Web.Api
                     _postCategoryService.Save();
 
                     response = request.CreateResponse(HttpStatusCode.OK);
-
                 }
                 return response;
             });

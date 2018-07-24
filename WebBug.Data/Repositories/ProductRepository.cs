@@ -2,7 +2,7 @@
 using WebBug.Model.Models;
 
 namespace WebBug.Data.Repositories
-{ 
+{
     public interface IProductRepository : IRepository<Product>
     {
     }

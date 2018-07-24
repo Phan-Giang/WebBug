@@ -3,7 +3,7 @@ using WebBug.Model.Models;
 
 namespace WebBug.Data.Repositories
 {
-    public interface IOrderDetailRepository :  IRepository<OrderDetail>
+    public interface IOrderDetailRepository : IRepository<OrderDetail>
     {
     }
 

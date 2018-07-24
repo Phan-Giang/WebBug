@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using WebBug.Data.Infrastructure;
 using WebBug.Data.Repositories;
 using WebBug.Model.Models;
@@ -41,7 +40,7 @@ namespace WebBug.Service
 
         public PostCategory Delete(int id)
         {
-           return _postCategoryRepository.Delete(id);
+            return _postCategoryRepository.Delete(id);
         }
 
         public IEnumerable<PostCategory> GetAll()

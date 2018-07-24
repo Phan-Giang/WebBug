@@ -9,9 +9,9 @@ namespace WebBug.UnitTest.RepositoryTest
     [TestClass]
     public class PostCategoryRepositoryTest
     {
-        IDbFactory dbFactory;
-        IPostCategoryRepository objRepository;
-        IUnitOfWork unitOfWork;
+        private IDbFactory dbFactory;
+        private IPostCategoryRepository objRepository;
+        private IUnitOfWork unitOfWork;
 
         [TestInitialize]
         public void Initialize()
@@ -42,6 +42,5 @@ namespace WebBug.UnitTest.RepositoryTest
             Assert.IsNotNull(result);
             Assert.AreEqual(2, result.ID);
         }
-
     }
 }

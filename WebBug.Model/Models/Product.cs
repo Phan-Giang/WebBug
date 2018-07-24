@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Xml.Linq;
 using WebBug.Model.Abstract;
 
 namespace WebBug.Model.Models
@@ -36,6 +35,7 @@ namespace WebBug.Model.Models
 
         [MaxLength(500)]
         public string Description { set; get; }
+
         public string Content { set; get; }
 
         public bool? HomeFlag { set; get; }

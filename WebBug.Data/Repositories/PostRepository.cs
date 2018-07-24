@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using WebBug.Data.Infrastructure;
 using WebBug.Model.Models;
-using System.Linq;
 
 namespace WebBug.Data.Repositories
 {

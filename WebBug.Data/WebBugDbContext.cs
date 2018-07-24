@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 using WebBug.Model.Models;
 
 namespace WebBug.Data
@@ -14,6 +9,7 @@ namespace WebBug.Data
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
+
         public DbSet<Footer> Footers { set; get; }
         public DbSet<Menu> Menus { set; get; }
         public DbSet<MenuGroup> MenuGroups { set; get; }
@@ -38,7 +34,6 @@ namespace WebBug.Data
 
         protected override void OnModelCreating(DbModelBuilder builder)
         {
-
         }
     }
 }
