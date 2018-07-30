@@ -1,9 +1,13 @@
-﻿using System.Net;
+﻿using AutoMapper;
+using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using WebBug.Model.Models;
 using WebBug.Service;
 using WebBug.Web.Infrastructure.Core;
+using WebBug.Web.Infrastructure.Extensions;
+using WebBug.Web.Models;
 
 namespace WebBug.Web.Api
 {
@@ -25,13 +29,15 @@ namespace WebBug.Web.Api
             {
                 var listCategory = _postCategoryService.GetAll();
 
+                var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
+
                 HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listCategory);
 
                 return response;
             });
         }
-
-        public HttpResponseMessage Post(HttpRequestMessage request, PostCategory postCategory)
+        [Route("add")]
+        public HttpResponseMessage Post(HttpRequestMessage request, PostCategoryViewModel postCategoryVm)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -42,7 +48,9 @@ namespace WebBug.Web.Api
                 }
                 else
                 {
-                    var category = _postCategoryService.Add(postCategory);
+                    PostCategory newPostCategory = new PostCategory();
+                    newPostCategory.UpdatePostCategory(postCategoryVm);
+                    var category = _postCategoryService.Add(newPostCategory);
                     _postCategoryService.Save();
 
                     response = request.CreateResponse(HttpStatusCode.Created, category);
@@ -50,8 +58,8 @@ namespace WebBug.Web.Api
                 return response;
             });
         }
-
-        public HttpResponseMessage Put(HttpRequestMessage request, PostCategory postCategory)
+        [Route("update")]
+        public HttpResponseMessage Put(HttpRequestMessage request, PostCategoryViewModel postCategoryVm)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -62,7 +70,10 @@ namespace WebBug.Web.Api
                 }
                 else
                 {
-                    _postCategoryService.Update(postCategory);
+                    var postCategoryDb = _postCategoryService.GetById(postCategoryVm.ID);
+                    postCategoryDb.UpdatePostCategory(postCategoryVm);
+
+                    _postCategoryService.Update(postCategoryDb);
                     _postCategoryService.Save();
 
                     response = request.CreateResponse(HttpStatusCode.OK);
