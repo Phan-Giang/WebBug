@@ -1,9 +1,10 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 using WebBug.Model.Models;
 
 namespace WebBug.Data
 {
-    public class WebBugDbContext : DbContext
+    public class WebBugDbContext : IdentityDbContext<ApplicationUser>
     {
         public WebBugDbContext() : base("BugDb")
         {
@@ -31,9 +32,18 @@ namespace WebBug.Data
 
         public DbSet<VisitorStatistic> VisitorStatistics { set; get; }
         public DbSet<Error> Errors { set; get; }
+        public static WebBugDbContext Create()
+        {
+            return new WebBugDbContext();
 
+        }
         protected override void OnModelCreating(DbModelBuilder builder)
         {
+            builder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId });
+            builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
+
+
+
         }
     }
 }

@@ -7,13 +7,13 @@ namespace WebBug.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class InitialDb : IMigrationMetadata
+    public sealed partial class newData : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialDb));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(newData));
         
         string IMigrationMetadata.Id
         {
-            get { return "201807230402524_InitialDb"; }
+            get { return "201807310720158_newData"; }
         }
         
         string IMigrationMetadata.Source
